@@ -1,123 +1,121 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<main class="central-custom-productos">
 
-<main>
+    <div class="container white-text mt-5 txt-productos">
 
-  <div class="container dark-grey-text mt-5">
+        <h1>{{ object.title }}</h1>
 
-    <h1>{{ object.title }}</h1>
-
-    <!--Grid row-->
-    <div class="row wow fadeIn">
+        <!--Grid row-->
+        <div class="row wow fadeIn">
 
 
 
-      <!--Grid column-->
-      <div class="col-md-6 mb-4">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
 
-        <img src="{{ object.image.url }}" class="card-img-top">
-      </div>
-      <!--Grid column-->
+                <img class="img-ventas" src="{{ object.image.url }}" class="card-img-top">
+            </div>
+            <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-md-6 mb-4">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
 
 
-        <!--Content-->
-        <div class="p-4">
+                <!--Content-->
+                <div class="p-4 txt-descripcion">
 
-          <div class="mb-3">
-            <a href="">
-              <span class="badge purple mr-1">{{ object.get_category_display }}</span>
-            </a>
-          </div>
+                    <div class="mb-3">
+                        <a>
+                            <span class="badge purple mr-1">{{ object.get_category_display }}</span>
+                        </a>
+                    </div>
 
-          <p class="lead">
-            {% if object.discount_price %}
-            <span class="mr-1">
+                    <p class="lead txt-precio">
+                        {% if object.discount_price %}
+                        <span class="mr-1 ">
               <del>${{ object.price }}</del>
             </span>
-            <span>${{ object.discount_price }}</span>
-            {% else %}
-            <span>${{ object.price }}</span>
-            {% endif %}
-          </p>
+                        <span>${{ object.discount_price }}</span> {% else %}
+                        <span>${{ object.price }}</span> {% endif %}
+                    </p>
 
-          <p class="lead font-weight-bold">Description</p>
+                    <p class="lead font-weight-bold">Descripción</p>
 
-          <p>{{ object.description }}</p>
+                    <p>{{ object.description }}</p>
 
-          {% comment %} <form class="d-flex justify-content-left">
-            <!-- Default input -->
-            <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-            <button class="btn btn-primary btn-md my-0 p" type="submit">
+                    {% comment %}
+                    <form class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+                        <button class="btn btn-primary btn-md my-0 p" type="submit">
               Add to cart
               <i class="fas fa-shopping-cart ml-1"></i>
             </button>
 
-          </form> {% endcomment %}
-          <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
-            Add to cart
+                    </form> {% endcomment %}
+                    <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 p">
+            Añadir al carrito
             <i class="fas fa-shopping-cart ml-1"></i>
           </a>
-          <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
-            Remove from cart
-          </a>
+
+
+                </div>
+                <!--Content-->
+
+            </div>
+            <!--Grid column-->
 
         </div>
-        <!--Content-->
+        <!--Grid row-->
 
-      </div>
-      <!--Grid column-->
+        <hr>
 
-    </div>
-    <!--Grid row-->
+        <h1>Otros Productos</h1>
 
-    <hr>
+        <div class="col-lg-3 col-md-6 mb-4">
 
-    <h1>Otros Productos</h1>
+            <div class="card ">
 
-    <div class="col-lg-3 col-md-6 mb-4">
-
-      <div class="card ">
-
-        <div class="view overlay">
-          <img src="{{ item.image.url }}" class="card-img-top">
+                <div class="view overlay ">
+                    <img src="{{ item.image.url }}" class="card-img-top">
 
 
-          <a href="{{ item.get_absolute_url }}">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
+                    <a href="{{ item.get_absolute_url }}">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
 
-        <div class="card-body text-center">
-          <a class="grey-text">
-            <h5>{{ item.get_category_display }}</h5>
-          </a>
-          <h5>
-            <strong>
+                <div class="card-body text-center ">
+                    <a class="grey-text">
+                        <h5>{{ item.get_category_display }}</h5>
+                    </a>
+                    <h5>
+                        <strong>
               <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
               </a>
             </strong>
-          </h5>
+                    </h5>
 
-          <h4 class="font-weight-bold blue-text">
-            <strong>$
+                    <h4 class="font-weight-bold blue-text">
+                        <strong>$
               {% if item.discount_price %}
               {{ item.discount_price }}
               {% else %}
               {{ item.price }}
               {% endif %}
             </strong>
-          </h4>
+                    </h4>
 
+                </div>
+
+            </div>
         </div>
 
-      </div>
-    </div>
+        <h5>{{ item.tittle.randoms }}</h5>
 
-    <h5>{{ item.tittle.randoms }}</h5>
+        <br><br><br>
+
 
 </main>
 

@@ -1,0 +1,54 @@
+.txt-welcome {
+    margin-top: 25px;
+    padding-top: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+.txt-productos {
+    margin-top: 25px;
+    padding-top: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.logo {
+    width: 150px;
+}
+
+.txt-logo {
+    text-decoration: none;
+    color: black;
+}
+
+.txt-logo:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.central-custom {
+    background-color: red;
+    margin-top: -27px;
+    margin-bottom: -55px;
+}
+
+.central-custom-productos {
+    background-color: red;
+    margin-top: -50px;
+    margin-bottom: -55px;
+}
+
+.img-ventas {
+    width: 400px;
+    height: 550px;
+}
+
+.txt-descripcion {
+    margin-left: -100px;
+    text-align: justify;
+}
+
+.txt-precio {
+    font-size: 40px;
+}
