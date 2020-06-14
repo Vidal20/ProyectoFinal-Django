@@ -32,12 +32,12 @@
                     </div>
 
                     <p class="lead txt-precio">
-                        {% if object.discount_price %}
+                        {% if object.discount_price %}0
                         <span class="mr-1 ">
               <del>${{ object.price }}</del>
             </span>
-                        <span>${{ object.discount_price }}</span> {% else %}
-                        <span>${{ object.price }}</span> {% endif %}
+                        <span>${{ object.discount_price }}0</span> {% else %}
+                        <span>${{ object.price }}0</span> {% endif %}
                     </p>
 
                     <p class="lead font-weight-bold">Descripción</p>
@@ -68,51 +68,6 @@
 
         </div>
         <!--Grid row-->
-
-        <hr>
-
-        <h1>Otros Productos</h1>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-
-            <div class="card ">
-
-                <div class="view overlay ">
-                    <img src="{{ item.image.url }}" class="card-img-top">
-
-
-                    <a href="{{ item.get_absolute_url }}">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <div class="card-body text-center ">
-                    <a class="grey-text">
-                        <h5>{{ item.get_category_display }}</h5>
-                    </a>
-                    <h5>
-                        <strong>
-              <a href="{{ item.get_absolute_url }}" class="dark-grey-text">{{ item.title }}
-              </a>
-            </strong>
-                    </h5>
-
-                    <h4 class="font-weight-bold blue-text">
-                        <strong>$
-              {% if item.discount_price %}
-              {{ item.discount_price }}
-              {% else %}
-              {{ item.price }}
-              {% endif %}
-            </strong>
-                    </h4>
-
-                </div>
-
-            </div>
-        </div>
-
-        <h5>{{ item.tittle.randoms }}</h5>
 
         <br><br><br>
 

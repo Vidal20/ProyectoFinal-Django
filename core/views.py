@@ -67,7 +67,7 @@ class CheckoutView(View):
 
             return render(self.request, "checkout.html", context)
         except ObjectDoesNotExist:
-            messages.info(self.request, "You do not have an active order")
+            messages.info(self.request, "No tiene articulos en el carrito")
             return redirect("core:checkout")
 
     def post(self, *args, **kwargs):
@@ -125,7 +125,7 @@ class CheckoutView(View):
 
                     else:
                         messages.info(
-                            self.request, "Please fill in the required shipping address fields")
+                            self.request, "Complete los campos faltantes")
 
                 use_default_billing = form.cleaned_data.get(
                     'use_default_billing')
@@ -188,7 +188,7 @@ class CheckoutView(View):
 
                     else:
                         messages.info(
-                            self.request, "Please fill in the required billing address fields")
+                            )
 
                 payment_option = form.cleaned_data.get('payment_option')
 
@@ -201,7 +201,7 @@ class CheckoutView(View):
                         self.request, "Invalid payment option selected")
                     return redirect('core:checkout')
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "No tiene articulos en el carrito")
             return redirect("core:order-summary")
 
 
@@ -358,7 +358,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, 'order_summary.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "No tiene articulos en el carrito")
             return redirect("/")
 
 
@@ -382,18 +382,18 @@ def add_to_cart(request, slug):
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "This item quantity was updated.")
+            messages.info(request, "La cantidad fue actualizada")
             return redirect("core:order-summary")
         else:
             order.items.add(order_item)
-            messages.info(request, "This item was added to your cart.")
+            messages.info(request, "El articulo fue agregado al carrito")
             return redirect("core:order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "This item was added to your cart.")
+        messages.info(request, "El articulo fue agregado al carrito")
         return redirect("core:order-summary")
 
 
@@ -415,13 +415,13 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             order_item.delete()
-            messages.info(request, "This item was removed from your cart.")
+            messages.info(request, "El articulo fue eliminado del carrito")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Este articulo no estaba en su carrito")
             return redirect("core:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "No tiene un pedido activo")
         return redirect("core:product", slug=slug)
 
 
@@ -446,13 +446,13 @@ def remove_single_item_from_cart(request, slug):
                 order_item.save()
             else:
                 order.items.remove(order_item)
-            messages.info(request, "This item quantity was updated.")
+            messages.info(request, "La cantidad fue actualizada")
             return redirect("core:order-summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Este articulo no estaba en su carrito")
             return redirect("core:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "No tienes un pedido activo")
         return redirect("core:product", slug=slug)
 
 
@@ -478,7 +478,7 @@ class AddCouponView(View):
                 messages.success(self.request, "Successfully added coupon")
                 return redirect("core:checkout")
             except ObjectDoesNotExist:
-                messages.info(self.request, "You do not have an active order")
+                messages.info(self.request, "No tiene articulos en el carrito")
                 return redirect("core:checkout")
 
 

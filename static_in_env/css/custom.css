@@ -93,6 +93,12 @@
     margin-bottom: -95px
 }
 
+.central-custom3 {
+    background-color: red;
+    margin-top: -10px;
+    margin-bottom: -95px
+}
+
 .div-es{
     background-color: red;
     padding: 40px;
@@ -113,5 +119,19 @@
     color: white;
 }
 
+.central-custom4 {
+    background-color: red;
+    margin-top: -10px;
+    margin-bottom: -95px
+}
+
+.footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
+}
 
 

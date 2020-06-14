@@ -1,31 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <main>
+
+<style>
+    .page-footer{
+        position: fixed; left: 0px; bottom: 0px; width: 100%; 
+    }
+    .main-custom{
+        margin-top: -20px;
+    }
+    
+</style>
+  <main class="central-custom2 main-custom">
     <div class="container">
 
     <div class="table-responsive text-nowrap">
-    <h2>Order Summary</h2>
+    <h2 class="txt-welcome">Carrito</h2>
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Item title</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total Item Price</th>
+            <th class="txt-welcome2" scope="col">#</th>
+            <th class="txt-welcome2" scope="col">Producto</th>
+            <th class="txt-welcome2" scope="col">Precio</th>
+            <th class="txt-welcome2" scope="col">Cantidad</th>
+            <th class="txt-welcome2" scope="col">Total</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="txt-welcome2">
         {% for order_item in object.items.all %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <th class="txt-welcome2" scope="row">{{ forloop.counter }}</th>
             <td>{{ order_item.item.title }}</td>
             <td>{{ order_item.item.price }}</td>
             <td>
-                <a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
+                <a style="color: white" href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
                 {{ order_item.quantity }}
-                <a href="{% url 'core:add-to-cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+                <a style="color: white" href="{% url 'core:add-to-cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
             </td>
             <td>
             {% if order_item.item.discount_price %}
@@ -34,18 +44,18 @@
             {% else %}
                 ${{ order_item.get_total_item_price }}
             {% endif %}
-            <a style='color: red;' href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+            <a style='color: white;' href="{% url 'core:remove-from-cart' order_item.item.slug %}">
                 <i class="fas fa-trash float-right"></i>
             </a>
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan='5'>Your cart is empty</td>
+            <td colspan='5'>El carrito esta vacio</td>
         </tr>
         <tr>
             <td colspan="5">
-            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            <a class='btn btn-primary float-right' href='/'>Continuar comprando</a>
             </td>
         </tr>
         {% endfor %}
@@ -62,14 +72,24 @@
         </tr>
         <tr>
             <td colspan="5">
-            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
-            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceder al pago</a>
+            <a class='btn btn-primary float-right' href='/'>Continuar comprando</a>
             </td>
         </tr>
         {% endif %}
         </tbody>
     </table>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<br>
     </div>
 
     </div>
