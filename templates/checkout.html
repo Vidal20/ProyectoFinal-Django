@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+
 
 {% block content %}
 
@@ -9,27 +9,24 @@
       <div class="row">
         <div class="col-md-8 mb-4">
           <div class="card">
-            <form method="POST" class="card-body">
-              {% csrf_token %}
+            <form method="" class="card-body">
+              
 
               <h3>Dirección de entrega</h3>
 
               <div class='hideable_shipping_form'>
 
                 <div class="md-form mb-5">
-                  <input type='text' id='shipping_address' name='shipping_address' class='form-control' />
+                  <input type='text' class='form-control' />
                   <label for="shipping_address" class="">Dirección</label>
                 </div>
 
-                <div class="md-form mb-5">
-                  <input type='text' id='shipping_address2' name='shipping_address2' class='form-control' />
-                  <label for="shipping_address2" class="">Dirección 2 (Opcional)</label>
-                </div>
+                
 
                 <div class="row">
                   <div class="col-lg-4 col-md-6 mb-4">
                     <label for="shipping_zip">Codigo Postal</label>
-                    <input type='text' id='shipping_zip' name='shipping_zip' class='form-control' />
+                    <input type='text'  class='form-control' />
                     <div class="invalid-feedback">
                       Porfavor ingrese su Codigo Postal
                     </div>
@@ -48,17 +45,29 @@
 
               <h3>Opciones de pago</h3>
 
-              <div class="d-block my-3">
-                {% for value, name in form.fields.payment_option.choices %}
-                <div class="custom-control custom-radio">
-                  <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
-                  <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
-                </div>
-                {% endfor %}
+              <br>
+
+
+              <div class="">
+                
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custon-control-input" required>
+                    <label for="Paypal">Paypal</label>
+                  </div>
+
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custon-control-input" required>
+                    <label for="Paypal">Tarjeta</label>
+                  </div>
+                  <br>
+                  <input type="button" style="width: 400px; margin-left: 140px;" value="Continuar la compra" class="btn btn-primary btn-lg btn-block" onclick="pago()" >
+
+                
               </div>
 
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Continuar la compra</button>
+              
+              <br>
 
             </form>
 
@@ -67,7 +76,7 @@
         </div>
 
         <div class="col-md-4 mb-4">
-          {% include "order_snippet.html" %}
+          
         </div>
 
       </div>
@@ -81,28 +90,13 @@
 {% endblock content %}
 
 {% block extra_scripts %}
+
+
 <script>
-var hideable_shipping_form = $('.hideable_shipping_form');
-var hideable_billing_form = $('.hideable_billing_form');
+  function pago() {
+  alert("Compra Realizada");
+  location.href="../";
 
-var use_default_shipping = document.querySelector("input[name=use_default_shipping]");
-var use_default_billing = document.querySelector("input[name=use_default_billing]");
-
-use_default_shipping.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_shipping_form.hide();
-  } else {
-    hideable_shipping_form.show();
-  }
-})
-
-use_default_billing.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_billing_form.hide();
-  } else {
-    hideable_billing_form.show();
-  }
-})
-
+}  
 </script>
 {% endblock extra_scripts %}
